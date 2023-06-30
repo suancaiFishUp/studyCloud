@@ -1,0 +1,42 @@
+
+server:
+  port: 8083
+
+spring:
+  application:
+    name: OrderService
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      discovery:
+        cluster-name: Hunan
+        # namespace: 35e05646-a506-40ba-b7cf-1ad9ac2d32b3
+        # ephemeral: false         //非临时实例配置
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://127.0.0.1:12123/eureka
+
+UserService:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.alibaba.cloud.nacos.ribbon.NacosRule  # 负载均衡规则
+
+#ribbon:
+#  eager-load:
+#    enabled: true
+#    clients: userservice
+
+#feign:
+#  client:
+#    config:
+#      default:
+#        logger-level: FULL
+feign:
+  httpclient:
+    enabled: true
+    max-connections: 200
+    max-connections-per-route: 50
+
+logging:
+  level:
+    com.example: debug
